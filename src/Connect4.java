@@ -33,7 +33,9 @@ public class Connect4 {
 
     }
 
+    public void play() {
 
+    }
     private void printDisplay() {
         for(int i = 0; i < display.length; i ++){
             for(int k = 0; k < display[i].length; k ++){
