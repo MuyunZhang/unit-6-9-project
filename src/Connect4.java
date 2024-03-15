@@ -41,9 +41,6 @@ public class Connect4 {
 
     }
 
-    public void play() {
-
-    }
     private void printDisplay() {
         for(int i : label){
             System.out.print(i + " ");
