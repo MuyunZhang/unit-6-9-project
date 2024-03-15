@@ -10,6 +10,8 @@ public class Connect4 {
 
     private Scanner scanner;
 
+     int[] label = {1, 2, 3, 4, 5, 6, 7};
+
     private void createPlayer() {
         System.out.print("Enter Player 1 name: ");
         String name = scanner.nextLine();
@@ -19,6 +21,9 @@ public class Connect4 {
         player2 = new Player(name2);
     }
     private void setupDisplay() {
+        for(int i : label){
+            System.out.println(i);
+        }
         display = new Space[8][7];
     }
 
