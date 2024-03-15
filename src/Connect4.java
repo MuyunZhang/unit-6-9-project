@@ -10,14 +10,13 @@ public class Connect4 {
 
     private Scanner scanner;
 
-     int[] label = {1, 2, 3, 4, 5, 6, 7};
+    int[] label = {1, 2, 3, 4, 5, 6, 7};
 
-     public void play(){
+    public void play(){
          setUp();
          setupDisplay();
          printDisplay();
-     }
-
+    }
     private void createPlayer() {
         System.out.print("Enter Player 1 name: ");
         String name = scanner.nextLine();
@@ -35,15 +34,32 @@ public class Connect4 {
         }
     }
 
-
-
     public void setUp(){
 
     }
 
-    public void play() {
 
+    public void dropPiece(int col, Player player) {
+        // this code is not very good change it later
+        if (col > 7 || col < 0) {
+            System.out.println("You cannot place a piece there!");
+        } else {
+            Space spaceToChange = null;
+            for (int row = 7; row > 0; row--) {
+                if (!(display[row][col] instanceof Player)) {
+                    spaceToChange = display[row][col];
+                    break;
+                }
+            }
+            if (spaceToChange == null) {
+                System.out.println("That column is filled up!");
+            } else {
+                spaceToChange = player;
+                System.out.println("You have placed a piece in column " + col + "!");
+            }
+        }
     }
+
     private void printDisplay() {
         for(int i : label){
             System.out.print(i + " ");
@@ -56,5 +72,4 @@ public class Connect4 {
             System.out.println();
         }
     }
-
 }
