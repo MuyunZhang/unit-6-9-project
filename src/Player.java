@@ -16,5 +16,4 @@ public class Player extends Space {
     public void addPoints(int amt) {
         score += amt;
     }
-
 }
