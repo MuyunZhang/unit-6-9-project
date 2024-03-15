@@ -12,6 +12,12 @@ public class Connect4 {
 
      int[] label = {1, 2, 3, 4, 5, 6, 7};
 
+     public void play(){
+         setUp();
+         setupDisplay();
+         printDisplay();
+     }
+
     private void createPlayer() {
         System.out.print("Enter Player 1 name: ");
         String name = scanner.nextLine();
@@ -21,10 +27,12 @@ public class Connect4 {
         player2 = new Player(name2);
     }
     private void setupDisplay() {
-        for(int i : label){
-            System.out.println(i);
-        }
         display = new Space[8][7];
+        for(int i = 0; i < display.length; i ++){
+            for(int k = 0; k < display[i].length; k++){
+                display[i][k] = new Space("_ ");
+            }
+        }
     }
 
 
@@ -35,6 +43,10 @@ public class Connect4 {
 
 
     private void printDisplay() {
+        for(int i : label){
+            System.out.print(i + " ");
+        }
+        System.out.println();
         for(int i = 0; i < display.length; i ++){
             for(int k = 0; k < display[i].length; k ++){
                 System.out.print(display[i][k].getSymbol());
