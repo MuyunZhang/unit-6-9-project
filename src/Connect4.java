@@ -13,7 +13,6 @@ public class Connect4 {
      int[] label = {1, 2, 3, 4, 5, 6, 7};
 
      public void play(){
-         setUp();
          setupDisplay();
          printDisplay();
      }
@@ -21,10 +20,10 @@ public class Connect4 {
     private void createPlayer() {
         System.out.print("Enter Player 1 name: ");
         String name = scanner.nextLine();
-        player1 = new Player(name);
+        player1 = new Player(name, "\033[0;33m");
         System.out.println("Enter Player 2 name");
         String name2 = scanner.nextLine();
-        player2 = new Player(name2);
+        player2 = new Player(name2,"\033[0;31m");
     }
     private void setupDisplay() {
         display = new Space[8][7];
@@ -37,8 +36,15 @@ public class Connect4 {
 
 
 
-    public void setUp(){
-
+    public void Game(){
+         boolean gameOver = false;
+         int input = 0;
+         while(!gameOver){
+              printDisplay();
+              System.out.println(player1.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
+              input = scanner.nextInt();
+              dropPiece(input, player1);
+         }
     }
 
     public void dropPiece(int col, Player player) {
