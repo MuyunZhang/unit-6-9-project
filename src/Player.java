@@ -8,6 +8,10 @@ public class Player extends Space {
         this.name = name;
     }
 
+    public String getName(){
+        return name;
+    }
+
 
     public int getScore() {
         return score;
