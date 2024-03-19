@@ -13,9 +13,6 @@ public class Player extends Space {
         this.name = color + name + RESET;
     }
 
-    public String getName(){
-        return name;
-    }
 
     public String getName(){
         return name;
