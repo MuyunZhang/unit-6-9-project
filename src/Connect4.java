@@ -16,10 +16,12 @@ public class Connect4 {
 
      public void play(){
          setupDisplay();
-         printDisplay();
+         createPlayer();
+         Game();
      }
 
     private void createPlayer() {
+         scanner = new Scanner(System.in);
         System.out.print("Enter Player 1 name: ");
         String name = scanner.nextLine();
         player1 = new Player(name, "\033[0;33m");
