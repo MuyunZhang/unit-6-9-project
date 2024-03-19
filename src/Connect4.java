@@ -10,6 +10,8 @@ public class Connect4 {
 
     private Scanner scanner;
 
+    private boolean gameOver;
+
      int[] label = {1, 2, 3, 4, 5, 6, 7};
 
      public void play(){
@@ -47,7 +49,7 @@ public class Connect4 {
          }
     }
 
-    public void dropPiece(int col, Player player) {
+    public boolean dropPiece(int col, Player player) {
         // this code is not very good change it later
         if (col > 7 || col < 1) {
             System.out.println("You cannot place a piece there!");
@@ -65,7 +67,9 @@ public class Connect4 {
                 spaceToChange = player;
                 System.out.println("You have placed a piece in column " + col + "!");
             }
+            return true;
         }
+        return false;
     }
     private void printDisplay() {
         for(int i : label){
