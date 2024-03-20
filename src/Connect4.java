@@ -22,7 +22,7 @@ public class Connect4 {
 
     private void createPlayer() {
          scanner = new Scanner(System.in);
-        System.out.print("Enter Player 1 name: ");
+        System.out.println("Enter Player 1 name: ");
         String name = scanner.nextLine();
         player1 = new Player(name, "\033[0;33m");
         System.out.println("Enter Player 2 name");
