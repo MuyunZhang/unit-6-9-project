@@ -44,10 +44,17 @@ public class Connect4 {
          boolean gameOver = false;
          int input = 0;
          while(!gameOver){
-              printDisplay();
-              System.out.println(player1.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
-              input = scanner.nextInt();
-              dropPiece(input, player1);
+             //fix the bug where it skips a players turn if they drop a piece on a filled up row
+             //players 1's turn
+             printDisplay();
+             System.out.println(player1.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
+             input = scanner.nextInt();
+             dropPiece(input, player1);
+             //player 2's turn
+             printDisplay();
+             System.out.println(player2.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
+             input = scanner.nextInt();
+             dropPiece(input, player2);
          }
     }
 
