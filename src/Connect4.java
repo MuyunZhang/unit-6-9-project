@@ -55,9 +55,10 @@ public class Connect4 {
          if (col > 7 || col < 1) {
             System.out.println("You cannot place a piece there!");
         } else {
-             // creates a null space to get coords for an empty space in a col
+             // creates a null space to get cords for an empty space in a col
             int theRowToChange = -1;
             for (int row = 7; row >= 0; row--) {
+                // uses the row that isn't a Player space
                 if (!(display[row][col - 1] instanceof Player)) {
                     theRowToChange = row;
                     break;
@@ -66,6 +67,7 @@ public class Connect4 {
             if (theRowToChange == -1) {
                 System.out.println("That column is filled up!");
             } else {
+                // changes the row to be the given Player space
                 display[theRowToChange][col - 1] = player;
                 System.out.println("You have placed a piece in column " + col + "!");
             }
@@ -80,7 +82,11 @@ public class Connect4 {
         System.out.println();
         for(int i = 0; i < display.length; i ++){
             for(int k = 0; k < display[i].length; k ++){
-                System.out.print(display[i][k].getSymbol());
+                if (display[i][k] instanceof Player) {
+                    System.out.print(display[i][k].getSymbol() + " ");
+                } else {
+                    System.out.print(display[i][k].getSymbol());
+                }
             }
             System.out.println();
         }
