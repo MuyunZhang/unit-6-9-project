@@ -52,21 +52,21 @@ public class Connect4 {
     }
 
     public boolean dropPiece(int col, Player player) {
-        // this code is not very good change it later
-        if (col > 7 || col < 1) {
+         if (col > 7 || col < 1) {
             System.out.println("You cannot place a piece there!");
         } else {
-            Space spaceToChange = null;
-            for (int row = 7; row > 0; row--) {
+             // creates a null space to get coords for an empty space in a col
+            int theRowToChange = -1;
+            for (int row = 7; row >= 0; row--) {
                 if (!(display[row][col - 1] instanceof Player)) {
-                    spaceToChange = display[row][col];
+                    theRowToChange = row;
                     break;
                 }
             }
-            if (spaceToChange == null) {
+            if (theRowToChange == -1) {
                 System.out.println("That column is filled up!");
             } else {
-                spaceToChange = player;
+                display[theRowToChange][col - 1] = player;
                 System.out.println("You have placed a piece in column " + col + "!");
             }
             return true;
