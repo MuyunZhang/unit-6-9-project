@@ -12,6 +12,8 @@ public class Connect4 {
 
     private boolean gameOver;
 
+    private boolean moveValid;
+
      int[] label = {1, 2, 3, 4, 5, 6, 7};
 
      public void play(){
@@ -44,17 +46,24 @@ public class Connect4 {
          boolean gameOver = false;
          int input = 0;
          while(!gameOver){
+             moveValid = false;
              //fix the bug where it skips a players turn if they drop a piece on a filled up row
              //players 1's turn
-             printDisplay();
-             System.out.println(player1.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
-             input = scanner.nextInt();
-             dropPiece(input, player1);
+             while (!moveValid) {
+                 printDisplay();
+                 System.out.println(player1.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
+                 input = scanner.nextInt();
+                 moveValid = dropPiece(input, player1);
+             }
+
              //player 2's turn
-             printDisplay();
-             System.out.println(player2.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
-             input = scanner.nextInt();
-             dropPiece(input, player2);
+             moveValid = false;
+             while (!moveValid) {
+                 printDisplay();
+                 System.out.println(player2.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
+                 input = scanner.nextInt();
+                 moveValid = dropPiece(input, player2);
+             }
          }
     }
 
@@ -77,8 +86,8 @@ public class Connect4 {
                 // changes the row to be the given Player space
                 display[theRowToChange][col - 1] = player;
                 System.out.println("You have placed a piece in column " + col + "!");
+                return true;
             }
-            return true;
         }
         return false;
     }
@@ -87,12 +96,12 @@ public class Connect4 {
             System.out.print(i + " ");
         }
         System.out.println();
-        for(int i = 0; i < display.length; i ++){
-            for(int k = 0; k < display[i].length; k ++){
-                if (display[i][k] instanceof Player) {
-                    System.out.print(display[i][k].getSymbol() + " ");
+        for (Space[] spaces : display) {
+            for (Space space : spaces) {
+                if (space instanceof Player) {
+                    System.out.print(space.getSymbol() + " ");
                 } else {
-                    System.out.print(display[i][k].getSymbol());
+                    System.out.print(space.getSymbol());
                 }
             }
             System.out.println();
