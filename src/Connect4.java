@@ -63,7 +63,22 @@ public class Connect4 {
             }
             if (checkConnect4(player2)) {
                 gameOver = true;
+                printDisplay();
                 System.out.println(player2.getName() + " wins!");
+                break;
+            }
+            boolean tie = true;
+            for(int i = 0; i < display.length; i ++){
+                for(int k = 0; k < display[i].length; k ++){
+                    if(display[i][k].getSymbol().equals("_ ")){
+                        tie = false;
+                    }
+                }
+            }
+            if(tie){
+                gameOver = true;
+                printDisplay();
+                System.out.println( Colors.PURPLE + "It is a tie" + Colors.RESET);
                 break;
             }
         }
