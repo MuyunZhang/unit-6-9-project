@@ -50,6 +50,7 @@ public class Connect4 {
             if (checkConnect4(player1)) {
                 gameOver = true;
                 printDisplay();
+                System.out.println("------------------------");
                 System.out.println(player1.getName() + " wins!");
                 break;
             }
@@ -64,6 +65,7 @@ public class Connect4 {
             if (checkConnect4(player2)) {
                 gameOver = true;
                 printDisplay();
+                System.out.println("------------------------");
                 System.out.println(player2.getName() + " wins!");
                 break;
             }
@@ -78,6 +80,7 @@ public class Connect4 {
             if(tie){
                 gameOver = true;
                 printDisplay();
+                System.out.println("------------------------");
                 System.out.println( Colors.PURPLE + "It is a tie" + Colors.RESET);
                 break;
             }
