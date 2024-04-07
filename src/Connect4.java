@@ -8,7 +8,7 @@ public class Connect4 {
     private Scanner scanner;
     private boolean gameOver;
     private boolean moveValid;
-    private int[] label = {1, 2, 3, 4, 5, 6, 7};
+    private int[] label = {1, 2, 3, 4, 5, 6, 7, 8};
 
     public void play() {
         setupDisplay();
@@ -27,7 +27,7 @@ public class Connect4 {
     }
 
     private void setupDisplay() {
-        display = new Space[8][7];
+        display = new Space[8][6];
         for (int i = 0; i < display.length; i++) {
             for (int k = 0; k < display[i].length; k++) {
                 display[i][k] = new Space("_ ");
@@ -41,7 +41,6 @@ public class Connect4 {
         while (!gameOver) {
             moveValid = false;
 
-            // Player 1's turn
             while (!moveValid) {
                 printDisplay();
                 System.out.println(player1.getName() + ", look at the numbers above the board and enter where you want to drop your piece");
@@ -50,11 +49,11 @@ public class Connect4 {
             }
             if (checkConnect4(player1)) {
                 gameOver = true;
+                printDisplay();
                 System.out.println(player1.getName() + " wins!");
                 break;
             }
 
-            // Player 2's turn
             moveValid = false;
             while (!moveValid) {
                 printDisplay();
@@ -76,57 +75,57 @@ public class Connect4 {
         for (int i = 0; i < 4; i++) {
             int row = startRow + i * dRow;
             int col = startCol + i * dCol;
-            if (row < 0 || row >= 8 || col < 0 || col >= 7) continue; // Out of bounds check
+            if (row < 0 || row >= 8 || col < 0 || col >= 6) continue;
             if (display[row][col] instanceof Player && display[row][col] == player) {
                 count++;
             } else {
-                break; // Break the sequence if not matching
+                break;
             }
         }
-        return count == 4; // Return true if there are 4 consecutive pieces
+        return count == 4;
     }
 
     private boolean checkConnect4(Player player) {
         // Check horizontal
         for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 4; col++) {
+            for (int col = 0; col < 5; col++) { // Adjusted for 8 columns and 6 rows
                 if (checkLine(player, row, col, 0, 1)) return true; // Check right
             }
         }
 
         // Check vertical
-        for (int row = 0; row < 5; row++) {
-            for (int col = 0; col < 7; col++) {
+        for (int row = 0; row < 3; row++) { // Adjusted for 8 columns and 6 rows
+            for (int col = 0; col < 6; col++) { // Adjusted for 8 columns and 6 rows
                 if (checkLine(player, row, col, 1, 0)) return true; // Check down
             }
         }
 
         // Check diagonal
-        for (int row = 0; row < 5; row++) {
-            for (int col = 0; col < 4; col++) {
+        for (int row = 0; row < 3; row++) { // Adjusted for 8 columns and 6 rows
+            for (int col = 0; col < 5; col++) { // Adjusted for 8 columns and 6 rows
                 if (checkLine(player, row, col, 1, 1)) return true; // Check diagonal
             }
         }
 
-        // Check anti-diagonal
-        for (int row = 0; row < 5; row++) {
-            for (int col = 3; col < 7; col++) {
+        // Check the other diagonal? idk
+        for (int row = 0; row < 3; row++) { // Adjusted for 8 columns and 6 rows
+            for (int col = 3; col < 6; col++) { // Adjusted for 8 columns and 6 rows
                 if (checkLine(player, row, col, 1, -1)) return true; // Check anti-diagonal
             }
         }
 
-        return false; // No Connect Four found
+        return false;
     }
 
     public boolean dropPiece(int col, Player player) {
-        if (col < 1 || col > 7) {
+        if (col < 1 || col > 8) {
             System.out.println("You cannot place a piece there!");
             return false;
         }
 
-        for (int row = 7; row >= 0; row--) {
-            if (!(display[row][col - 1] instanceof Player)) {
-                display[row][col - 1] = player;
+        for (int row = 5; row >= 0; row--) {
+            if (!(display[col - 1][row] instanceof Player)) {
+                display[col - 1][row] = player;
                 return true;
             }
         }
@@ -135,17 +134,15 @@ public class Connect4 {
         return false;
     }
 
+
     private void printDisplay() {
-        for (int i : label) {
-            System.out.print(i + " ");
-        }
         System.out.println();
-        for (Space[] spaces : display) {
-            for (Space space : spaces) {
-                if (space instanceof Player) {
-                    System.out.print(space.getSymbol() + " ");
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 8; col++) {
+                if (display[col][row] instanceof Player) {
+                    System.out.print(display[col][row].getSymbol() + " ");
                 } else {
-                    System.out.print(space.getSymbol());
+                    System.out.print(display[col][row].getSymbol());
                 }
             }
             System.out.println();
@@ -153,6 +150,7 @@ public class Connect4 {
         for (int i : label) {
             System.out.print(i + " ");
         }
+        System.out.println();
     }
-}
 
+}
