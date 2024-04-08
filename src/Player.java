@@ -7,7 +7,7 @@ public class Player extends Space {
     public static final String RESET = "\033[0m";
 
     public Player(String name, String color) {
-        super(color + name.substring(0, 1) + RESET); // symbol is first initial
+        super(name.substring(0, 1) + RESET); // symbol is first initial
         this.color = color;
         score = 0;
         this.name = color + name + RESET;
@@ -16,6 +16,10 @@ public class Player extends Space {
 
     public String getName(){
         return name;
+    }
+    @Override
+    public String getSymbol() {
+        return color + super.getSymbol();
     }
 
 
