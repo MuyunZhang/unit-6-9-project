@@ -22,10 +22,19 @@ public class Connect4 {
             System.out.println(player2.getName() + "'s points: " + player2.getScore());
             System.out.println("Would you like to play again? (y/n)");
             scanner.nextLine();
-            String playerInput = scanner.nextLine();
-            if (playerInput.equals("n")) {
-                endMatch = true;
-                scanner.close();
+            String playerInput = "";
+            while (!playerInput.equals("n") || !playerInput.equals("y")) {
+                playerInput = scanner.nextLine();
+                if (playerInput.equals("n")) {
+                    endMatch = true;
+                    scanner.close();
+                    break;
+                } else if (playerInput.equals("y")) {
+                    System.out.println("Starting a new game...");
+                    break;
+                } else {
+                    System.out.println("Can you retype your answer?");
+                }
             }
         }
         System.out.println("Goodbye " + player1.getName() + " and " + player2.getName() + "!");
