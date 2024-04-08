@@ -8,12 +8,27 @@ public class Connect4 {
     private Scanner scanner;
     private boolean gameOver;
     private boolean moveValid;
+
+    private boolean endMatch;
     private int[] label = {1, 2, 3, 4, 5, 6, 7, 8};
 
     public void play() {
-        setupDisplay();
+        endMatch = false;
         createPlayer();
-        gameLoop();
+        while (!endMatch) {
+            setupDisplay();
+            gameLoop();
+            System.out.println(player1.getName() + "'s points: " + player1.getScore());
+            System.out.println(player2.getName() + "'s points: " + player2.getScore());
+            System.out.println("Would you like to play again? (y/n)");
+            scanner.nextLine();
+            String playerInput = scanner.nextLine();
+            if (playerInput.equals("n")) {
+                endMatch = true;
+                scanner.close();
+            }
+        }
+        System.out.println("Goodbye " + player1.getName() + " and " + player2.getName() + "!");
     }
 
     private void createPlayer() {
@@ -52,6 +67,7 @@ public class Connect4 {
                 printDisplay();
                 System.out.println("------------------------");
                 System.out.println(player1.getName() + " wins!");
+                player1.addPoints(1);
                 break;
             }
 
@@ -67,6 +83,7 @@ public class Connect4 {
                 printDisplay();
                 System.out.println("------------------------");
                 System.out.println(player2.getName() + " wins!");
+                player2.addPoints(1);
                 break;
             }
             boolean tie = true;
@@ -85,7 +102,6 @@ public class Connect4 {
                 break;
             }
         }
-        scanner.close();
     }
 
     private boolean checkLine(Player player, int startRow, int startCol, int dRow, int dCol) {
