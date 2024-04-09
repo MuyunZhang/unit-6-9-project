@@ -121,6 +121,9 @@ public class Connect4 {
             if (row < 0 || row >= 8 || col < 0 || col >= 6) continue;
             if (display[row][col] instanceof Player && display[row][col] == player) {
                 count++;
+                if(count == 4){
+                    return true;
+                }
             } else {
                 break;
             }
