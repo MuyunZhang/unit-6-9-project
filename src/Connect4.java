@@ -131,34 +131,42 @@ public class Connect4 {
     private boolean checkConnect4(Player player) {
         // Check horizontal
         for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 5; col++) { // Adjusted for 8 columns and 6 rows
-                if (checkLine(player, row, col, 0, 1)) return true; // Check right
+            for (int col = 0; col < 3; col++) {
+                if (checkLine(player, row, col, 0, 1)) {
+                    return true; // Check right
+                }
             }
         }
 
         // Check vertical
-        for (int row = 0; row < 3; row++) { // Adjusted for 8 columns and 6 rows
-            for (int col = 0; col < 6; col++) { // Adjusted for 8 columns and 6 rows
-                if (checkLine(player, row, col, 1, 0)) return true; // Check down
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 6; col++) {
+                if (checkLine(player, row, col, 1, 0)) {
+                    return true; // Check down
+                }
             }
         }
 
         // Check diagonal
-        for (int row = 0; row < 3; row++) { // Adjusted for 8 columns and 6 rows
-            for (int col = 0; col < 5; col++) { // Adjusted for 8 columns and 6 rows
-                if (checkLine(player, row, col, 1, 1)) return true; // Check diagonal
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (checkLine(player, row, col, 1, 1)) {
+                    return true; // Check diagonal
+                }
             }
         }
 
-        // Check the other diagonal? idk
-        for (int row = 0; row < 3; row++) { // Adjusted for 8 columns and 6 rows
-            for (int col = 3; col < 6; col++) { // Adjusted for 8 columns and 6 rows
-                if (checkLine(player, row, col, 1, -1)) return true; // Check anti-diagonal
+        // Check the other diagonal
+        for (int row = 0; row < 5; row++) {
+            for (int col = 3; col < 6; col++) {
+                if (checkLine(player, row, col, 1, -1)) {
+                    return true; // Check anti-diagonal
+                }
             }
         }
-
         return false;
     }
+
 
     public boolean dropPiece(int col, Player player) {
         if (col < 1 || col > 8) {
